@@ -5,6 +5,13 @@ import { Button } from "./ui/button";
 import { Heart, MapPin, Bed, Bath, Maximize, Eye } from "lucide-react";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/carousel";
 
 interface PropertyCardProps {
   property: Property;
@@ -45,12 +52,22 @@ export const PropertyCard = ({ property, onViewDetails }: PropertyCardProps) => 
   return (
     <Card className="overflow-hidden group card-hover animate-fade-in">
       <div className="relative overflow-hidden">
-        <img
-          src={property.image}
-          alt={property.title}
-          className="w-full h-64 object-cover group-hover:scale-110 smooth-transition"
-        />
-        <div className="absolute top-4 left-4 flex gap-2">
+        <Carousel className="w-full">
+          <CarouselContent>
+            {property.images.map((image, index) => (
+              <CarouselItem key={index}>
+                <img
+                  src={image}
+                  alt={`${property.title} - Imagem ${index + 1}`}
+                  className="w-full h-64 object-cover"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-2" />
+          <CarouselNext className="right-2" />
+        </Carousel>
+        <div className="absolute top-4 left-4 flex gap-2 z-10">
           <Badge className="bg-primary text-primary-foreground">
             {property.category === "venda" ? "Venda" : "Aluguel"}
           </Badge>
@@ -62,7 +79,7 @@ export const PropertyCard = ({ property, onViewDetails }: PropertyCardProps) => 
           variant="ghost"
           size="icon"
           onClick={toggleFavorite}
-          className={`absolute top-4 right-4 bg-white/90 hover:bg-white ${
+          className={`absolute top-4 right-4 bg-white/90 hover:bg-white z-10 ${
             isFavorite ? "text-red-500" : "text-gray-600"
           }`}
         >

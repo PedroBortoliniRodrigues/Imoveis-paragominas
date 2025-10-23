@@ -17,7 +17,7 @@ export const properties: Property[] = [
     bathrooms: 2,
     area: 180,
     image: house1,
-    images: [house1],
+    images: [house1, house2, house3],
     features: [
       "Garagem para 2 carros",
       "Área de churrasqueira",
@@ -38,7 +38,7 @@ export const properties: Property[] = [
     bathrooms: 3,
     area: 200,
     image: house2,
-    images: [house2],
+    images: [house2, house3, house1],
     features: [
       "4 quartos",
       "Área de lazer",
@@ -58,7 +58,7 @@ export const properties: Property[] = [
     bathrooms: 4,
     area: 350,
     image: house3,
-    images: [house3],
+    images: [house3, house1, house2],
     features: [
       "Piscina",
       "Área gourmet",
@@ -78,7 +78,7 @@ export const properties: Property[] = [
     location: "Promissão I, Paragominas-PA",
     area: 450,
     image: lot1,
-    images: [lot1],
+    images: [lot1, house1, house2],
     features: [
       "Esquina",
       "Documentação regular",
@@ -98,7 +98,7 @@ export const properties: Property[] = [
     bathrooms: 1,
     area: 85,
     image: house1,
-    images: [house1],
+    images: [house1, house3],
     features: [
       "2 quartos",
       "Garagem",
@@ -115,7 +115,7 @@ export const properties: Property[] = [
     location: "Nova Conquista, Paragominas-PA",
     area: 300,
     image: lot1,
-    images: [lot1],
+    images: [lot1, house2, house3],
     features: [
       "Plano",
       "Esquina",

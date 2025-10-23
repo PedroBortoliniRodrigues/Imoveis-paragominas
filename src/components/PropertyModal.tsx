@@ -8,6 +8,13 @@ import {
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { MapPin, Bed, Bath, Maximize, MessageCircle, Check } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "./ui/carousel";
 
 interface PropertyModalProps {
   property: Property | null;
@@ -42,14 +49,24 @@ export const PropertyModal = ({ property, isOpen, onClose }: PropertyModalProps)
         </DialogHeader>
 
         <div className="space-y-6">
-          {/* Imagem Principal */}
+          {/* Carrossel de Imagens */}
           <div className="relative rounded-lg overflow-hidden">
-            <img
-              src={property.image}
-              alt={property.title}
-              className="w-full h-96 object-cover"
-            />
-            <div className="absolute top-4 left-4 flex gap-2">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {property.images.map((image, index) => (
+                  <CarouselItem key={index}>
+                    <img
+                      src={image}
+                      alt={`${property.title} - Imagem ${index + 1}`}
+                      className="w-full h-96 object-cover"
+                    />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </Carousel>
+            <div className="absolute top-4 left-4 flex gap-2 z-10">
               <Badge className="bg-primary text-primary-foreground">
                 {property.category === "venda" ? "Venda" : "Aluguel"}
               </Badge>
